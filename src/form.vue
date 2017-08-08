@@ -2,9 +2,9 @@
   <div>
     <form >
       <div class="form-group">
-        <label>Username</label>
-  	    <input type="text" class="form-control" v-model="username" >
-  	    <p>{{ err.username }}</p>
+        <label>name</label>
+  	    <input type="text" class="form-control" v-model="name" >
+  	    <p>{{ err.name }}</p>
       </div>
       <div class="form-group">
         <label>Email</label>
@@ -27,33 +27,33 @@
   data () {
     
     return  {
-      username: this.obj.username,
-      email: this.obj.email,
-      password: this.obj.password,
+      name: this.user.name,
+      email: this.user.email,
+      password: this.user.password,
       flag: {
-          username: false,
+          name: false,
           email: false,
           password: false
       },
       err: {
-        username: "",
-        email: "",
-        password: ""
+        name: "value entered is incorrect",
+        email: "value entered is incorrect",
+        password: "value entered is incorrect"
       },
-      obj1: {},
+      user1: {},
       button: "Signup"
     }
   },
   created () {
-    console.log(this.obj.id);
-    if(this.obj.hasOwnProperty("id")) {
-        this.flag.username = true;
+    
+    if(this.user.hasOwnProperty("id")) {
+        this.flag.name = true;
         this.flag.password = true;
         this.flag.email = true;
         this.button = "Update";
-        this.obj1 = this.obj;
+        this.user1 = this.user;
       } else {
-        this.flag.username = false;
+        this.flag.name = false;
         this.flag.email = false;
         this.flag.password = false;
         this.button = "Signup";
@@ -62,13 +62,13 @@
   
   watch: {
     
-    username(val, oldVal) {
+    name(val, oldVal) {
       if (/^[" "]*$/.test(val)) {
-        this.err.username = 'value entered is incorrect'
-        this.flag.username = false 
+        this.err.name = 'value entered is incorrect'
+        this.flag.name = false 
       } else {
-        this.err.username = 'correct value'
-        this.flag.username = true
+        this.err.name = 'correct value'
+        this.flag.name = true
         
       }  
     },
@@ -94,11 +94,11 @@
   },
   methods: {
     getFormValues () {
-      if (this.flag.username && this.flag.email && this.flag.password) {
-        this.obj1.username = this.username;
-        this.obj1.email = this.email;
-        this.obj1.password = this.password;
-       this.newData(this.obj1);
+      if (this.flag.name && this.flag.email && this.flag.password) {
+        this.user1.name = this.name;
+        this.user1.email = this.email;
+        this.user1.password = this.password;
+       this.newData(this.user1);
 
       }
     }
@@ -106,7 +106,7 @@
 
   },
     props :[
-       'newData', 'obj'
+       'newData', 'user'
     ] 
 }  
 

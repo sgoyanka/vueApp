@@ -1,9 +1,9 @@
 <template>
 		<div v-if=loginType>
-			<form-component v-bind:newData = "newData" v-bind:obj ="obj" />
+			<form-component v-bind:newData = "newData" v-bind:user ="user" />
 		</div>
 		<div v-else>
-			<form-data v-bind:user = "user" v-bind:remove = "remove" v-bind:addData = "addData" v-bind:editData = "editData"/>		
+			<form-data v-bind:users = "users" v-bind:remove = "remove" v-bind:addData = "addData" v-bind:editData = "editData"/>		
 		</div>
 </template>
 
@@ -15,9 +15,9 @@
 		data () {
 			return {
 				loginType: true,
-      	user : [],
+      	users : [],
 			  id : 0,
-			  obj : {},
+			  user : {},
 			  index : 0
     	} 
 		},
@@ -27,31 +27,31 @@
   		EditData
   	},
   	methods : {
-  		newData (obj) {
-  			if(!obj.hasOwnProperty("id")) {
-  		  this.user.push({
+  		newData (user) {
+  			if(!user.hasOwnProperty("id")) {
+  		  this.users.push({
           id : this.id,
-          username : obj.username,
-          email : obj.email,
-          password : obj.password
+          name : user.name,
+          email : user.email,
+          password : user.password
         });
         this.id++;
   			} else {
-  				this.user[this.index] = obj;
+  				this.users[this.index] = user;
   			}
-  			console.log(this.user);
+  			console.log(this.users);
   			this.loginType = false;
   		},
   		remove(index) {
-  			this.user.splice(index,1);
+  			this.users.splice(index,1);
   		},
   		addData() {
-        this.obj = {};
+        this.user = {};
   			this.loginType = true; 
   		},
   		editData(index) {
   			this.index = index;
-  			this.obj = this.user[index];
+  			this.user = this.users[index];
   			this.loginType = true;
   		}
   		
