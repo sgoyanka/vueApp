@@ -18,10 +18,12 @@
 			</tbody>
 		</table>
   </div>
+
 </template>     
 <script >
 
   export default {
+    name : 'Formdata',
    
     methods : {
 
@@ -32,6 +34,7 @@
         }
       },
       addNewData () {
+        //window.location = "/#/create";
         this.addData();
       },
       edit (index) {
