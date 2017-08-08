@@ -1,5 +1,5 @@
 <template>
-		<div v-if="loginType === 'signup' || loginType === 'editData'">
+		<div v-if=loginType>
 			<form-component v-bind:newData = "newData" v-bind:obj ="obj" />
 		</div>
 		<div v-else>
@@ -14,7 +14,7 @@
 	export default {
 		data () {
 			return {
-				loginType: 'signup',
+				loginType: true,
       	user : [],
 			  id : 0,
 			  obj : {},
@@ -28,7 +28,7 @@
   	},
   	methods : {
   		newData (obj) {
-  			if(!obj.id || obj.id != 0) {
+  			if(!obj.hasOwnProperty("id")) {
   		  this.user.push({
           id : this.id,
           username : obj.username,
@@ -40,27 +40,19 @@
   				this.user[this.index] = obj;
   			}
   			console.log(this.user);
-  			this.loginType = "showData";
+  			this.loginType = false;
   		},
   		remove(index) {
   			this.user.splice(index,1);
   		},
   		addData() {
-  			this.obj = {
-  				button: "signup",
-  				flag : {
-  					username : false,
-			  		email : false,
-			  		password : false
-  				}
-  			};
-  			this.loginType = "signup"; 
+        this.obj = {};
+  			this.loginType = true; 
   		},
   		editData(index) {
   			this.index = index;
   			this.obj = this.user[index];
-  			//console.log(this.obj);
-  			this.loginType = "editData";
+  			this.loginType = true;
   		}
   		
   	}

@@ -46,7 +46,7 @@
   },
   created () {
     console.log(this.obj.id);
-    if(this.obj.id > -1) {
+    if(this.obj.hasOwnProperty("id")) {
         this.flag.username = true;
         this.flag.password = true;
         this.flag.email = true;
