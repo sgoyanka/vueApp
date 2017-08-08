@@ -98,6 +98,7 @@
         this.user1.name = this.name;
         this.user1.email = this.email;
         this.user1.password = this.password;
+        console.log(this.user1);
        this.newData(this.user1);
 
       }
