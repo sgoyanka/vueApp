@@ -1,21 +1,21 @@
 <template>
-		<div v-if=loginType>
-			<form-component v-bind:newData = "newData" v-bind:user ="user" />
-		</div>
-		<div v-else>
-			<form-data v-bind:users = "users" v-bind:remove = "remove" v-bind:addData = "addData" v-bind:editData = "editData"/>		
-		</div>
+	<router-view v-bind:users="users" v-bind:remove="remove" v-bind:addData="addData" v-bind:editData="editData" v-bind:newData="newData" v-bind:user="user"></router-view>		
 </template>
 
 <script>
 	import FormComponent from './form.vue'
 	import FormData from './formData.vue'
-	import EditData from './editData.vue'
+	
 	export default {
 		data () {
 			return {
 				loginType: true,
-      	users : [],
+      	users : [{
+          id:1,
+          name : "shanu",
+          email : "abc@w",
+          password : "Dajshb@1233"
+        }],
 			  id : 0,
 			  user : {},
 			  index : 0
@@ -23,8 +23,7 @@
 		},
 	 	components : {
   		FormComponent,
-  		FormData,
-  		EditData
+  		FormData
   	},
   	methods : {
   		newData (user) {
@@ -40,19 +39,19 @@
   				this.users[this.index] = user;
   			}
   			console.log(this.users);
-  			this.loginType = false;
+  			window.location = "/#/"
   		},
   		remove(index) {
   			this.users.splice(index,1);
   		},
   		addData() {
         this.user = {};
-  			this.loginType = true; 
+  			window.location = "/#/create";
   		},
   		editData(index) {
   			this.index = index;
   			this.user = this.users[index];
-  			this.loginType = true;
+  			window.location = "/#/create"
   		}
   		
   	}
