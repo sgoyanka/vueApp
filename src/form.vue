@@ -27,31 +27,39 @@
   data () {
     
     return  {
-      name: this.user.name,
-      email: this.user.email,
-      password: this.user.password,
+      name: "",
+      email: "",
+      password: "",
       flag: {
           name: false,
           email: false,
           password: false
       },
       err: {
-        name: "value entered is incorrect",
-        email: "value entered is incorrect",
-        password: "value entered is incorrect"
+        name: "",
+        email: "",
+        password: ""
       },
       user1: {},
       button: "Signup"
     }
   },
   created () {
-    
-    if(this.user.hasOwnProperty("id")) {
+    console.log(this.$route.params.id);
+    if(this.$route.params.hasOwnProperty("id")) {
         this.flag.name = true;
         this.flag.password = true;
         this.flag.email = true;
         this.button = "Update";
-        this.user1 = this.user;
+        this.user1.id = this.$route.params.id;
+        for (var i = 0; i < this.users.length; i++) {
+          if(this.users[i].id == this.$route.params.id) {
+            this.name = this.users[i].name;
+            this.email = this.users[i].email;
+            this.password = this.users[i].password;
+            break;
+          }
+        }
       } else {
         this.flag.name = false;
         this.flag.email = false;
@@ -98,7 +106,7 @@
         this.user1.name = this.name;
         this.user1.email = this.email;
         this.user1.password = this.password;
-        console.log(this.user1);
+        
        this.newData(this.user1);
 
       }
@@ -107,7 +115,7 @@
 
   },
     props :[
-       'newData', 'user'
+       'newData', 'users'
     ] 
 }  
 
