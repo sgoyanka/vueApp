@@ -24,5 +24,10 @@ export default new Router({
       component: FormComponent,
       props : true
     },
+    {
+      path: '/users',
+      component: FormData,
+      props : true
+    }
   ]
 })
