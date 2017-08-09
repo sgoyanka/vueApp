@@ -24,6 +24,7 @@
 
 <script >
   export default {
+    name: "FormComponent",
   data () {
     
     return  {
@@ -45,18 +46,17 @@
     }
   },
   created () {
-    console.log(this.$route.params.id);
     if(this.$route.params.hasOwnProperty("id")) {
         this.flag.name = true;
         this.flag.password = true;
         this.flag.email = true;
         this.button = "Update";
         this.user1.id = this.$route.params.id;
-        for (var i = 0; i < this.users.length; i++) {
-          if(this.users[i].id == this.$route.params.id) {
-            this.name = this.users[i].name;
-            this.email = this.users[i].email;
-            this.password = this.users[i].password;
+        for (var i = 0; i < this.$store.state.users.length; i++) {
+          if(this.$store.state.users[i].id == this.$route.params.id) {
+            this.name = this.$store.state.users[i].name;
+            this.email = this.$store.state.users[i].email;
+            this.password = this.$store.state.users[i].password;
             break;
           }
         }
@@ -107,16 +107,15 @@
         this.user1.email = this.email;
         this.user1.password = this.password;
         
-       this.newData(this.user1);
+        this.$store.dispatch('newData', {
+            user: this.user1
+          });
 
       }
     }
 
 
-  },
-    props :[
-       'newData', 'users'
-    ] 
+  }
 }  
 
 </script>
