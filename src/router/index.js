@@ -2,29 +2,31 @@ import Vue from 'vue/dist/vue.js'
 import Router from 'vue-router'
 import FormComponent from '../form.vue'
 import FormData from '../formData.vue'
-import App from '../app.vue'
 
 Vue.use(Router)
-var data = App.data();
 export default new Router({
 
   routes: [
     {
+      name : "FormData",
       path: '/',
       component: FormData,
       props : true
     },
     {
+      name : "FormComponent",
       path: '/create',
       component: FormComponent,
       props : true
     },
     {
+      name : "FormComponent",
       path: '/users/:id',
       component: FormComponent,
       props : true
     },
     {
+      name : "FormData",
       path: '/users',
       component: FormData,
       props : true
