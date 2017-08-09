@@ -11,12 +11,12 @@
 			return {
 				loginType: true,
       	users : [{
-          id:1,
+          id:0,
           name : "shanu",
           email : "abc@w",
           password : "Dajshb@1233"
         }],
-			  id : 0,
+			  id : 1,
 			  user : {},
 			  index : 0
     	} 
@@ -51,7 +51,7 @@
   		editData(index) {
   			this.index = index;
   			this.user = this.users[index];
-  			window.location = "/#/create"
+  			window.location = "/#/users/" + this.user.id; 
   		}
   		
   	}
