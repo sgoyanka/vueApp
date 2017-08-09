@@ -19,5 +19,10 @@ export default new Router({
       component: FormComponent,
       props : true
     },
+    {
+      path: '/users/:id',
+      component: FormComponent,
+      props : true
+    },
   ]
 })
